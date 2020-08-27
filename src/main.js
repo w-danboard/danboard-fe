@@ -7,6 +7,7 @@ import router from './routers'
 // 引入样式
 import '@/assets/styles/main.css' 			        // 公共样式
 import 'element-ui/lib/theme-chalk/index.css'   // elment-ui 样式
+import '@/assets/fonts/iconfont.css' 						// 图标字体
 
 Vue.config.productionTip = false
 

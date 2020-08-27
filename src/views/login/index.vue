@@ -70,16 +70,22 @@
             v-model="loginForm.username"
             placeholder="请输入用户名"
             clearable>
+            <i slot="prefix" class="icon iconfont icon-yonghuxinxi"></i>
           </el-input>
         </el-form-item>
         <el-form-item prop="password">
           <el-input
             v-model="loginForm.password"
-            type="password"
+            :type="passwordType"
             placeholder="请输入密码"
             @focus="focusPassword"
-            @blur="blurPassword"
-            clearable>
+            @blur="blurPassword">
+            <i slot="prefix" class="icon iconfont icon-mima"></i>
+            <i
+              slot="suffix"
+              :class="['icon', 'iconfont', passwordEye ? 'icon-jurassic_loseeyes' : 'icon-jurassic_openeyes']"
+              @click="changePwdEye">
+            </i>
           </el-input>
         </el-form-item>
         <el-form-item>
@@ -97,6 +103,8 @@ export default {
   data() {
     return {
       isShow: true,
+      passwordEye: false,
+      passwordType: 'password',
       loading: false,
       loginForm: {
         username: '',
@@ -113,6 +121,11 @@ export default {
     }
   },
   methods: {
+    // 切换密码眼睛
+    changePwdEye() {
+      this.passwordEye = !this.passwordEye
+      this.passwordType = this.passwordEye ? 'text' : 'password'
+    },
     focusPassword() {
       this.isShow = false
     },
@@ -610,6 +623,13 @@ export default {
             bottom: 12px;
           }
         }        
+      }
+      /* 重置样式 */
+      .iconfont {
+        font-size: 20px;
+      }
+      >>> .el-input__suffix-inner {
+        cursor: pointer;
       }
     }
   }
